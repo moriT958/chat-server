@@ -1,8 +1,8 @@
 package main
 
 import (
+	"chat-server/hub"
 	"net/http"
-	"simple-message-server/hub"
 )
 
 func main() {

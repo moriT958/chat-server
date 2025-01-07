@@ -2,13 +2,13 @@ package main
 
 import (
 	"chat-server/hub"
-	"net/http"
+	"chat-server/server"
 )
 
 func main() {
 	h := hub.New()
 	go h.Run()
 
-	http.Handle("/ws", h)
-	http.ListenAndServe(":8080", nil)
+	s := server.New(h)
+	s.Run()
 }

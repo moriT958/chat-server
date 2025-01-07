@@ -1,4 +1,4 @@
-module simple-message-server
+module chat-server
 
 go 1.23.3
 

@@ -1,6 +1,6 @@
-# memChat
+# chat-server
 
-A simple inMemory real time chat server.
+A simple real time chat server using websocket.
 
 ## Ref
 

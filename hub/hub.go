@@ -15,7 +15,7 @@ var (
 
 type Hub struct {
 	sync.Mutex
-	connections map[*connection]bool
+	connections map[*connection]interface{}
 
 	upgrader   websocket.Upgrader
 	register   chan *connection
@@ -28,7 +28,7 @@ func New() *Hub {
 	h := &Hub{
 		register:    make(chan *connection),
 		unregister:  make(chan *connection),
-		connections: make(map[*connection]bool),
+		connections: make(map[*connection]interface{}),
 		Broadcast:   make(chan *Message),
 	}
 
@@ -75,20 +75,20 @@ func (h *Hub) doRegister(c *connection) {
 	h.Lock()
 	defer h.Unlock()
 
-	h.connections[c] = false
+	h.connections[c] = "Some Clients for conn."
 }
 
 func (h *Hub) doBroadcast(m *Message) {
 	h.Lock()
 	defer h.Unlock()
 
-	bytes, err := m.bytes()
+	mb, err := m.bytes()
 	if err != nil {
 		log.Printf("failed to marshal message: %+v, reason: %s\n", m, err)
 		return
 	}
 	for conn := range h.connections {
-		conn.send <- bytes
+		conn.send <- mb
 	}
 }
 

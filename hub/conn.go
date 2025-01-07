@@ -27,7 +27,7 @@ type connection struct {
 }
 
 func (c *connection) close() {
-	if !c.isClosed {
+	if c.isClosed {
 		if err := c.ws.Close(); err != nil {
 			log.Println("ws was already closed:", err)
 		}

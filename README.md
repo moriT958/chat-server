@@ -1,3 +1,7 @@
-# Simple inMemory Message Server
+# memChat
 
-Adopted from [gorilla/websocket's exsample](https://github.com/gorilla/websocket/tree/main/examples/chat)
+A simple inMemory real time chat server.
+
+## Ref
+
+- [DATA-DOG/golang-websocket-hub](https://github.com/DATA-DOG/golang-websocket-hub)
